@@ -1,7 +1,0 @@
-com\example\placementtracker\config\DataInitializer.class
-com\example\placementtracker\service\ResourceNotFoundException.class
-com\example\placementtracker\controller\ApplicationController.class
-com\example\placementtracker\service\ApplicationService.class
-com\example\placementtracker\model\Application.class
-com\example\placementtracker\repository\ApplicationRepository.class
-com\example\placementtracker\PlacementTrackerApplication.class
