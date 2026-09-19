@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head('Details')}"></head>
+<body>
+<nav th:replace="~{base :: nav}"></nav>
+
+<main class="container narrow">
+    <h1><span th:text="${jobApplication.company}">Acme</span> — <span th:text="${jobApplication.role}">Intern</span></h1>
+
+    <dl class="detail">
+        <dt>Company</dt>
+        <dd th:text="${jobApplication.company}">Acme Labs</dd>
+
+        <dt>Role</dt>
+        <dd th:text="${jobApplication.role}">Python Intern</dd>
+
+        <dt>Status</dt>
+        <dd><span th:text="${jobApplication.status}"
+                 th:class="'badge badge-' + ${#strings.toLowerCase(jobApplication.status)}">Applied</span></dd>
+
+        <dt>Applied Date</dt>
+        <dd th:text="${jobApplication.appliedOn != null ? jobApplication.appliedOn : 'Not set (Wishlist)'}">2026-09-16</dd>
+
+        <dt>Job URL</dt>
+        <dd>
+            <a th:if="${jobApplication.jobUrl != null and !jobApplication.jobUrl.isEmpty()}"
+               th:href="${jobApplication.jobUrl}" th:text="${jobApplication.jobUrl}" target="_blank">link</a>
+            <span th:if="${jobApplication.jobUrl == null or jobApplication.jobUrl.isEmpty()}">—</span>
+        </dd>
+
+        <dt>Notes</dt>
+        <dd th:text="${jobApplication.notes != null and !jobApplication.notes.isEmpty() ? jobApplication.notes : '—'}">notes</dd>
+
+        <dt>Created At</dt>
+        <dd th:text="${jobApplication.createdAt}">2026-09-18</dd>
+    </dl>
+
+    <div class="form-actions">
+        <a th:href="@{/applications/{id}/edit(id=${jobApplication.id})}" class="btn btn-primary">Edit</a>
+        <!-- Delete is POST only (never a GET link) + browser confirmation -->
+        <form th:action="@{/applications/{id}/delete(id=${jobApplication.id})}" method="post"
+              onsubmit="return confirm('Delete this application?');" style="display:inline">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a th:href="@{/}" class="btn btn-secondary">Back to dashboard</a>
+    </div>
+</main>
+</body>
+</html>
