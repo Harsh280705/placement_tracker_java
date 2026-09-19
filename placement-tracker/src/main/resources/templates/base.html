@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Shared fragments: head + navigation. Other pages pull them in with th:replace. -->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${title} + ' | Placement Tracker'">Placement Tracker</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<nav th:fragment="nav" class="nav">
+    <a th:href="@{/}" class="brand">Placement Tracker</a>
+    <a th:href="@{/}" class="nav-link">Dashboard</a>
+    <a th:href="@{/applications/new}" class="nav-link">+ Add Application</a>
+</nav>
+</body>
+</html>
